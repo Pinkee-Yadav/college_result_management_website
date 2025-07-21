@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # 1. Student Model
 class Student(models.Model):
@@ -34,7 +35,7 @@ class Course(models.Model):
 class Result(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='results')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='results')
-    marks_obtained = models.FloatField()
+    marks_obtained = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     class Meta:
         unique_together = ('student', 'course')  # Prevent duplicate result entry
