@@ -12,6 +12,7 @@ class Student(models.Model):
     def __str__(self):
          return f"{self.full_name} ({self.roll_number})"
 
+
 # 2. Teacher Model    
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -20,6 +21,7 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.full_name
+
 
 # 3. Course Model
 class Course(models.Model):
@@ -30,6 +32,7 @@ class Course(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.code})"
+
 
 # 4. Result Model
 class Result(models.Model):
@@ -42,3 +45,4 @@ class Result(models.Model):
 
     def __str__(self):
         return f"{self.student.full_name} - {self.course.name}: {self.marks_obtained}"
+
